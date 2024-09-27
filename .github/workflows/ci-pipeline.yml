@@ -2,9 +2,9 @@ name: AVR CI/CD
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ main, dev ]
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get install gcc-avr binutils avr-libc avrdude make
 
     - name: 🔨 Compile code
-      run: make
+      run: make all
     
     - name: 🚀 Upload artifacts
       if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'Merge pull request')
