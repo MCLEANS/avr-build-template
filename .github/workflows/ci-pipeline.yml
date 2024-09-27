@@ -2,7 +2,7 @@ name: AVR CI/CD
 
 on:
   push:
-    branches: [ master,dev ]
+    branches: [ master, dev ]
   pull_request:
     branches: [ master ]
 
@@ -21,8 +21,8 @@ jobs:
       run: make
     
     - name: 🚀 Upload artifacts
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'Merge pull request')
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: main.hex
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'Merge pull request')
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: main.hex
